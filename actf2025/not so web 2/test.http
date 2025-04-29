@@ -1,0 +1,11 @@
+POST https://127.0.0.1:3000/register
+Content-Type: application/x-www-form-urlencoded
+
+username=admi1&password=password
+
+###
+POST https://127.0.0.1:3000/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admi1&password=password
+

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mailserver:
+    image: mailserver/docker-mailserver:latest
+    env_file: mailu.env
+    hostname: ezmail.org
+    domainname: ezmail.org
+    ports:
+      - "25:25"    # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
+      - "143:143"  # IMAP4 (explicit TLS => STARTTLS)
+      - "587:587"  # ESMTP (explicit TLS => STARTTLS)
+    restart: always
+
+
+  flaskapp:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mailserver
+    extra_hosts:
+      - "ezmail.org:127.25.0.2"  # 让 Flask 能解析 ezmail.org
+
+volumes:
+  maildata:

